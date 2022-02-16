@@ -27,4 +27,61 @@ public class User {
 	public Long getId() {
 		return id;
 	}
+
+
+	public String getFulName() {
+		return fulName;
+	}
+
+
+	public void setFulName(String fulName) {
+		this.fulName = fulName;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public boolean isActive() {
+		return active;
+	}
+
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+
+	public Role getRole() {
+		return role;
+	}
+
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 }

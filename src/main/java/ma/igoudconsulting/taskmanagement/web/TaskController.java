@@ -15,48 +15,48 @@ import ma.igoudconsulting.taskmanagement.service.TaskService;
 
 @Controller
 public class TaskController {
-	
+
 	@Autowired
 	private TaskService taskService;
 	@Autowired
 	private StateService stateService;
-	
-	@GetMapping ("list-tasks")
+
+	@GetMapping("list-tasks")
 	public String listTask(Model model) {
 		model.addAttribute("tasks", this.taskService.findAll());
 		return "views/list-tasks";
 	}
 
-	@GetMapping ("add-task")
+	@GetMapping("add-task")
 	public String addTask(Model model) {
 		model.addAttribute("task", new Task());
 		model.addAttribute("states", stateService.findAll());
 		return "views/add-task";
 	}
-	
-	@PostMapping ("add-task")
+
+	@PostMapping("add-task")
 	public String addTaskPost(Model model, Task task) {
 		taskService.save(task);
 		return "redirect:/list-tasks";
 	}
-	
-	@GetMapping ("delete-task")
+
+	@GetMapping("delete-task")
 	public String deleteTask(@RequestParam("id_task") Long id) {
 		taskService.delete(id);
 		return "redirect:/list-tasks";
 	}
-	
-	@GetMapping ("detail-task")
-	public String delailTask(@PathParam("id_task") Long id) {
 
+	@GetMapping("detail-task")
+	public String delailTask(@RequestParam("id_task") Long id, Model model, Task task) {
+		model.addAttribute("task", taskService.findOne(id).get());
 		return "views/detail-task";
 	}
-	
-	@GetMapping ("edit-task")
-	public String editTask(@PathParam("idTask") Long id) {
 
+	@GetMapping("edit-task")
+	public String editTask(@RequestParam("id_task") Long id, Model model, Task task) {
+		model.addAttribute("task", taskService.findOne(id).get());
+		model.addAttribute("states", stateService.findAll());
 		return "views/add-task";
 	}
-
 
 }

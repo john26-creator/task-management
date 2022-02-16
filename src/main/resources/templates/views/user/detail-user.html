@@ -16,7 +16,7 @@
 <!-- Custom styles for this template-->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-<title>Add Task</title>
+<title>Add User</title>
 </head>
 <body id="page-top">
 
@@ -43,36 +43,29 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add Task</h1>
+						<h1 class="h3 mb-0 text-gray-800">Detail User</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 					</div>
 					<div class="col-lg-6">
-						<form role="form" th:object="${task}" th:action="@{add-task}"
-							method="post">
-							<div class="form-group">
-								<label for="name">Name</label> <input th:field="*{name}"
-									type="text" class="form-control" id="name" placeholder="Name">
-							</div>
-							<div class="form-group">
-								<label for="description">Description</label> <input
-									th:field="*{description}" type="text" class="form-control"
-									id="description" placeholder="Description">
-								<div class="form-group">
-									<label for="state">State</label> 
-									<select  class="form-control" id="state" th:field="*{state}">
-										<option  th:each="state:${states}" th:value="${state.id}" th:text="${state.code}"></option>
-									</select>
-								</div>
-							</div>
-							
-							<input type="hidden" th:field="*{id}">
-							<button type="submit" class="btn btn-primary">Submit</button>
-							<button type="button" class="btn btn-primary">Cancel</button>
-						</form>
-					</div>
 
+                            <!-- Dropdown Card Example -->
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary" th:text="${user.fulName}"></h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                 <p th:text="${user.email}"></p>
+                                    <p th:text="${user.password}"></p>
+                                    <p th:text="${user.active}"></p>
+                                    <p th:text="${user.role?.code}"></p>
+                                </div>
+                            </div>
+
+                        </div>
 				</div>
 			</div>
 		</div>

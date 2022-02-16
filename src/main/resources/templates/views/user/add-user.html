@@ -16,7 +16,7 @@
 <!-- Custom styles for this template-->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-<title>Add Task</title>
+<title>Add User</title>
 </head>
 <body id="page-top">
 
@@ -43,30 +43,38 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add Task</h1>
+						<h1 class="h3 mb-0 text-gray-800">Add User</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 					</div>
 					<div class="col-lg-6">
-						<form role="form" th:object="${task}" th:action="@{add-task}"
+						<form role="form" th:object="${user}" th:action="@{add-user}"
 							method="post">
 							<div class="form-group">
-								<label for="name">Name</label> <input th:field="*{name}"
-									type="text" class="form-control" id="name" placeholder="Name">
+								<label for="name">Full Name</label> <input th:field="*{fulName}"
+									type="text" class="form-control" id="full_name" placeholder="Full Name">
 							</div>
 							<div class="form-group">
-								<label for="description">Description</label> <input
-									th:field="*{description}" type="text" class="form-control"
-									id="description" placeholder="Description">
-								<div class="form-group">
-									<label for="state">State</label> 
-									<select  class="form-control" id="state" th:field="*{state}">
-										<option  th:each="state:${states}" th:value="${state.id}" th:text="${state.code}"></option>
-									</select>
-								</div>
+								<label for="description">Email</label> <input
+									th:field="*{email}" type="text" class="form-control"
+									id="email" placeholder="Email">
+								
+									<label for="state">Password</label> 
+									<input  type= "password" class="form-control" id="password" th:field="*{password}">
+								
 							</div>
-							
+							<div class="form-group">
+								<label for="description">Active</label> <input
+									th:field="*{active}" type="text" class="form-control"
+									id="active" placeholder="Active">
+								
+									<label for="state">Role</label> 
+									<select  class="form-control" id="roles" th:field="*{role}">
+										<option  th:each="role:${roles}" th:value="${role.id}" th:text="${role.code}"></option>
+									</select>
+								
+							</div>
 							<input type="hidden" th:field="*{id}">
 							<button type="submit" class="btn btn-primary">Submit</button>
 							<button type="button" class="btn btn-primary">Cancel</button>

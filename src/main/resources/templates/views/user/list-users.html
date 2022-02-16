@@ -16,7 +16,7 @@
 <!-- Custom styles for this template-->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-<title>Add Task</title>
+<title>User List</title>
 </head>
 <body id="page-top">
 
@@ -39,45 +39,62 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add Task</h1>
+						<h1 class="h3 mb-0 text-gray-800">Users List</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 					</div>
-					<div class="col-lg-6">
-						<form role="form" th:object="${task}" th:action="@{add-task}"
-							method="post">
-							<div class="form-group">
-								<label for="name">Name</label> <input th:field="*{name}"
-									type="text" class="form-control" id="name" placeholder="Name">
-							</div>
-							<div class="form-group">
-								<label for="description">Description</label> <input
-									th:field="*{description}" type="text" class="form-control"
-									id="description" placeholder="Description">
-								<div class="form-group">
-									<label for="state">State</label> 
-									<select  class="form-control" id="state" th:field="*{state}">
-										<option  th:each="state:${states}" th:value="${state.id}" th:text="${state.code}"></option>
-									</select>
-								</div>
-							</div>
-							
-							<input type="hidden" th:field="*{id}">
-							<button type="submit" class="btn btn-primary">Submit</button>
-							<button type="button" class="btn btn-primary">Cancel</button>
-						</form>
-					</div>
+				</div>
+				<div class="container-fluid">
 
+					<!-- DataTales Example -->
+
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">List of users</h6>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered" id="dataTable" width="100%"
+									cellspacing="0">
+									<thead>
+										<tr>
+											<th>FullName</th>
+											<th>Email</th>
+											<th>Active</th>
+											<th>Role</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr th:each="user:${users}">
+											<td th:text="${user.fulName}"></td>
+											<td th:text="${user.email}"></td>
+											<td th:text="${user.active}"></td>
+											<td th:text="${user.role?.code}"></td>
+											<td><a th:href="@{/edit-user?id_user=}+${user.id}" class="fas fa-edit" title="edit"></a>
+											 	<a th:href="@{/delete-user?id_user=}+${user.id}" class="fas fa-trash" title="delete"></a>
+												<a th:href="@{/detail-user?id_user=}+${user.id}" class="fas fa-list" title="detail"></a></td>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
+
+
+			<!-- Page Heading -->
+
+
 		</div>
 	</div>
-
 
 
 	<!-- Bootstrap core JavaScript-->
